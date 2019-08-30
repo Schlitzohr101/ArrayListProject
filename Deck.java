@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Deck {
-    List<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<Card>();
 
     /*
      * Default Constructor 
@@ -51,12 +51,23 @@ public class Deck {
 
     /**
      * shuffle
-     * shuffles
+     * shuffles deck based on predetermined randomness
+     * Input: n/a
+     * Output: shuffled deck
      */
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
+    /**
+     * split
+     * divides the deck into half the original amount
+     * Input: n/a
+     * Output: @return half of the orginal deck
+     */
+    public List<Card> split() {
+        return cards.subList(cards.size()/2, cards.size()-1);
+    }
 
     /*
      * toString 

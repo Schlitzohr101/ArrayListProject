@@ -1,9 +1,6 @@
 
 
 public class WarController {
-    WarController() {
-        Deck player1 = new Deck();
-        
-
-    }
+    private Hand player1;
+    private Hand player2;
 }

@@ -11,10 +11,12 @@ public class ArrayListProject {
         System.out.println("This shit is gay");
         // Card dumb = new Card(3,"Heart");
         // System.out.println(dumb.toString());
-        Deck ourDeck = new Deck();
-        System.out.println(ourDeck.toString());
-        System.out.println(ourDeck.removeCard().toString());
-        ourDeck.shuffle();
-        System.out.println(ourDeck.toString());
+        // Deck ourDeck = new Deck();
+        // System.out.println(ourDeck.toString());
+        // System.out.println(ourDeck.removeCard().toString());
+        // ourDeck.shuffle();
+        // System.out.println(ourDeck.toString());
+        Hand newHand = new Hand();
+        System.out.println(newHand.toString());
     }
 }

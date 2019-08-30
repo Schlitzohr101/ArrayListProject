@@ -11,9 +11,10 @@ public class ArrayListProject {
         System.out.println("This shit is gay");
         // Card dumb = new Card(3,"Heart");
         // System.out.println(dumb.toString());
-        Hand ourDeck = new Hand();
+        Deck ourDeck = new Deck();
         System.out.println(ourDeck.toString());
         System.out.println(ourDeck.removeCard().toString());
+        ourDeck.shuffle();
         System.out.println(ourDeck.toString());
     }
 }

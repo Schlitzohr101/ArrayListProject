@@ -9,14 +9,20 @@
 public class ArrayListProject {
     public static void main(String[] args) {
         System.out.println("This shit is gay");
-        // Card dumb = new Card(3,"Heart");
+        Card dumb = new Card(3,"Heart");
+
+        Card stupid = new Card(2,"club");
+        System.out.println(dumb.toString());
         // System.out.println(dumb.toString());
         // Deck ourDeck = new Deck();
+        // Deck testDeck;
+        // testDeck = new Deck(ourDeck.split());
+        
         // System.out.println(ourDeck.toString());
         // System.out.println(ourDeck.removeCard().toString());
         // ourDeck.shuffle();
-        // System.out.println(ourDeck.toString());
-        Hand newHand = new Hand();
-        System.out.println(newHand.toString());
+        // System.out.println(testDeck.toString());
+        // Hand newHand = new Hand();
+        // System.out.println(newHand.toString());
     }
 }

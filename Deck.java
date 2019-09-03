@@ -12,7 +12,7 @@ public class Deck {
     Deck() {
         String[] suits = { "H", "C", "D", "S" };
         for (String str : suits) {
-            for (int i = 0; i < 13; i++) {
+            for (int i = 1; i <= 13; i++) {
                 cards.add(new Card(i, str));
             }
         }
@@ -65,8 +65,8 @@ public class Deck {
      * Input: n/a
      * Output: @return half of the orginal deck
      */
-    public List<Card> split() {
-        return cards.subList(cards.size()/2, cards.size()-1);
+    public ArrayList<Card> split() {
+        return new ArrayList<Card>(cards.subList(cards.size()/2, cards.size()));
     }
 
     /*
@@ -83,7 +83,7 @@ public class Deck {
         for (Card card : cards) {
             builder.append(card.toString()+", ");
             tenMax++;
-            if (tenMax > 4) {
+            if (tenMax > 5) {
                 builder.append("\n");
                 tenMax = 0;
             }

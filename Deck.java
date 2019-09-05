@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Deck {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> cards = new ArrayList<Card>();
 
     /*
      * Default Constructor 
@@ -50,10 +50,20 @@ public class Deck {
     }
 
     /**
+     * showTopCard
+     * gives a reference to the card on the top of the deck
+     * @param n/a
+     * @return Card on top
+     */
+    public Card showTopCard() {
+        return cards.get(0);
+    }
+
+    /**
      * shuffle
      * shuffles deck based on predetermined randomness
-     * Input: n/a
-     * Output: shuffled deck
+     * @param n/a
+     * @return shuffled deck
      */
     public void shuffle() {
         Collections.shuffle(cards);

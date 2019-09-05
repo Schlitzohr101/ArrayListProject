@@ -1,7 +1,5 @@
-import java.util.*;
-
 public class Hand extends Deck {
-    public ArrayList<Card> hand;
+    // public ArrayList<Card> hand;
     private String name;
     /**
      * Default Constructor
@@ -10,7 +8,7 @@ public class Hand extends Deck {
      * Outputs: instance of Hand object
      */
     Hand() {
-        hand = new ArrayList<Card>();
+        // hand = new ArrayList<Card>();
         name = "player";
     }
 
@@ -20,35 +18,49 @@ public class Hand extends Deck {
      * @return
      */
     Hand(String newName) {
-        hand = new ArrayList<Card>();
+        // hand = new ArrayList<Card>();
         name = newName;
     }
 
     /**
      * drawCard
      * takes card given and puts into hand
-     * Inputs: @param deckCard
-     * Outputs: boolean of it the operation was a success
+     * @param deckCard
+     * @return boolean of it the operation was a success
      */
     public boolean drawCard(Card deckCard) {
-        boolean outOfCards = false;
-        outOfCards = deckCard == null; 
-        if (!outOfCards) {
-            hand.add(deckCard);
+        boolean hasCards = false;
+        hasCards = deckCard != null; 
+        if (!hasCards) {
+            super.addCard(deckCard);
         }
-        return outOfCards;
+        return hasCards;
     }
 
-//     /**
-//      * 
-//      */
-//     public String showCard(boolean facedown, boolean isWar) {
-//         StringBuilder builder = new StringBuilder();
-//         //depending on if in war, format changes
-//         builder.append((isWar ? "war card for " + name + " " : name + " plays "));
-//         //if card is facedown, dispaly only xx else display the top card in the hand
-//         builder.append((facedown ? "Card is xx" : hand.get(0).toString()));
-//         return builder.toString();
+    /**
+     * getTopCard
+     * see the top Card in the hand
+     * Input: n/a
+     * Output: @return Card on top
+     */
+    public Card getTopCard() {
+        return super.showTopCard();
+    }
+
+
+    /**
+     * display
+     * Handles the displaying of the cards in the hand
+     * @param null
+     * @return string of the Card to be displayed in either war or regular form
+     */
+    public String display() {
+        StringBuilder builder = new StringBuilder();
+        //depending on if in war, format changes
+        builder.append((getTopCard().isFaceup() ? "war card for " + name + " " : name + " plays "));
+        //if card is facedown, dispaly only xx else display the top card in the hand
+        builder.append( (getTopCard().isFaceup() ? getTopCard().toString() : "Card is xx") );
+        return builder.toString();
         
-//     }
+    }
  }

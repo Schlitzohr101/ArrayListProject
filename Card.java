@@ -2,6 +2,7 @@ public class Card {
 
     private int rank;
     private EnumConverter.suits suit;
+    private boolean faceup;
 
     /*
      * Default Constructor Creates a blank card Inputs: n/a Outputs: rank will be 0
@@ -10,6 +11,7 @@ public class Card {
     Card() {
         rank = 0;
         suit = null;
+        faceup = true;
     }
 
     /*
@@ -20,6 +22,7 @@ public class Card {
     Card(int ranker, String suiter) {
         rank = ranker;
         suit = EnumConverter.toSuit(suiter.charAt(0));
+        faceup = true;
     }
 
     /**
@@ -50,6 +53,26 @@ public class Card {
      */
     public EnumConverter.suits getSuit() {
         return suit;
+    }
+
+    /**
+     * isFaceup
+     * returns boolean if the card is faceup
+     * Input: n/a
+     * Output: @return true if faceup and false if facedown
+     */
+    public boolean isFaceup() {
+        return faceup;
+    }
+
+    /**
+     * flip
+     * takes the faceup or facedown card and flips
+     * Input: n/a
+     * Output: reverse of faceup or facedown
+     */
+    public void flip() {
+        faceup = !faceup;
     }
 
     /**

@@ -1,73 +1,66 @@
-import java.util.*;
-
-public class Hand {
-    List<Card> cards = new ArrayList<Card>();
-
-    /*
-     * Default Constructor 
-     * Creates a full 52 card deck from Hearts to Spades 
-     * Inputs: n/a 
-     * Outputs: cards attribute will hold the new full deck
+public class Hand extends Deck {
+    // public ArrayList<Card> hand;
+    private String name;
+    /**
+     * Default Constructor
+     * Builds the instance of the object
+     * Inputs: n/a
+     * Outputs: instance of Hand object
      */
     Hand() {
-        String[] suits = { "Hearts", "Clubs", "Diamonds", "Spades" };
-        for (String str : suits) {
-            for (int i = 0; i < 13; i++) {
-                cards.add(new Card(i, str));
-            }
-        }
-    }
-
-    /*
-     * Non - Default Constructor 
-     * Instantiates the Deck with the parameter list of cards
-     * Inputs: req -> ArrayList<Card> newCards
-     * Outputs: Deck attribute of cards is the same as the parameter list
-     */
-    Hand(ArrayList<Card> newCards) {
-        cards = newCards;
-    }
-
-    /*
-     *  addCard
-     *  adds a new Card to the deck
-     *  Inputs: @param newCard
-     *  Outputs: Deck contains the Card @param newCard
-     */
-    public boolean addCard(Card newCard) {
-        return cards.add(newCard);
+        // hand = new ArrayList<Card>();
+        name = "player";
     }
 
     /**
-     * removeCard
-     * takes the top card from the hand
-     * Inputs: n/a
-     * Outputs: @return the card that was removed
+     * Non-default Constructor
+     * @param deckCard
+     * @return
      */
-    public Card removeCard() {
-        return (cards.size() > 0 ? cards.remove(0) : null);
+    Hand(String newName) {
+        // hand = new ArrayList<Card>();
+        name = newName;
     }
 
-
-    /*
-     * toString 
-     * Converts the deck object into a string 
-     * Inputs: n/a 
-     * Outputs: displays all cards in rows of 10
+    /**
+     * drawCard
+     * takes card given and puts into hand
+     * @param deckCard
+     * @return boolean of it the operation was a success
      */
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        int tenMax = 0;
-        builder.append("Deck:\n");
-        for (Card card : cards) {
-            builder.append(card.toString()+", ");
-            tenMax++;
-            if (tenMax > 4) {
-                builder.append("\n");
-                tenMax = 0;
-            }
+    public boolean drawCard(Card deckCard) {
+        boolean hasCards = false;
+        hasCards = deckCard != null; 
+        if (!hasCards) {
+            super.addCard(deckCard);
         }
-        return builder.toString();
+        return hasCards;
     }
-}
+
+    /**
+     * getTopCard
+     * see the top Card in the hand
+     * Input: n/a
+     * Output: @return Card on top
+     */
+    public Card getTopCard() {
+        return super.showTopCard();
+    }
+
+
+    /**
+     * display
+     * Handles the displaying of the cards in the hand
+     * @param null
+     * @return string of the Card to be displayed in either war or regular form
+     */
+    public String display() {
+        StringBuilder builder = new StringBuilder();
+        //depending on if in war, format changes
+        builder.append((getTopCard().isFaceup() ? "war card for " + name + " " : name + " plays "));
+        //if card is facedown, dispaly only xx else display the top card in the hand
+        builder.append( (getTopCard().isFaceup() ? getTopCard().toString() : "Card is xx") );
+        return builder.toString();
+        
+    }
+ }

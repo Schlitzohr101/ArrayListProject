@@ -9,10 +9,13 @@
 public class ArrayListProject {
     public static void main(String[] args) {
         System.out.println("This shit is gay");
-        Card dumb = new Card(3,"Heart");
+        WarController War = new WarController();
+        War.startGame();
+        // Card dumb = new Card(3,"Heart");
 
-        Card stupid = new Card(2,"club");
-        System.out.println(dumb.toString());
+        // Card stupid = new Card(2,"club");
+        
+        // System.out.println(dumb.toString());
         // System.out.println(dumb.toString());
         // Deck ourDeck = new Deck();
         // Deck testDeck;

@@ -12,7 +12,7 @@ public class Deck {
     Deck() {
         String[] suits = { "H", "C", "D", "S" };
         for (String str : suits) {
-            for (int i = 1; i <= 13; i++) {
+            for (int i = 1; i < 14; i++) {
                 cards.add(new Card(i, str));
             }
         }
@@ -76,7 +76,10 @@ public class Deck {
      * Output: @return half of the orginal deck
      */
     public ArrayList<Card> split() {
-        return new ArrayList<Card>(cards.subList(cards.size()/2, cards.size()));
+        ArrayList<Card> returner = new ArrayList<Card>(cards.subList(cards.size()/2, cards.size()));
+        cards = new ArrayList<Card>(cards.subList(0, cards.size()/2));
+
+        return returner;
     }
 
     /*

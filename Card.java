@@ -95,11 +95,17 @@ public class Card {
         builder.append("Card is ");
         switch (rank) {
             case 0: builder.append("NULL");
+            break;
             case 1: builder.append("Ace");
+            break;
             case 11: builder.append("Jack");
+            break;
             case 12: builder.append("Queen");
+            break;
             case 13: builder.append("King");
+            break;
             default: builder.append(rank);
+            break;
         }
         builder.append(" of " + (suit == null ? "null" : suit.toString()));
         

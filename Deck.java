@@ -28,6 +28,15 @@ public class Deck {
         cards = newCards;
     }
 
+    /**
+     * getSize
+     * returns int of the deck size
+     * @return the size of the deck
+     */
+    public int getSize() {
+        return cards.size();
+    }
+
     /*
      *  addCard
      *  adds a new Card to the deck

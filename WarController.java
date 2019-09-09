@@ -14,11 +14,7 @@ public class WarController {
      * Output: deck1 and deck2 are shuffled and split, hands are ready
      */
     WarController() {
-        player1 = new Hand("player 1");
-        player1.shuffle();
-        player2 = new Hand("player 2",player1.split());
-        canPlay = false;
-        inWar = false;
+        resetController();
     }
 
 
@@ -30,7 +26,7 @@ public class WarController {
 
         while (canPlay) {
             int val = compareHands(inWar);
-            System.out.println(val);
+            //System.out.println(val);
             switch(val) {
                 case 0 : beginWar();
                 break;
@@ -40,9 +36,12 @@ public class WarController {
             if (!inWar){
                 canPlay = (player1.drawCard() && player2.drawCard()) ;
             }
-            
         }
-        
+        if (player1.getSize() > 0) {
+            System.out.println(player1.getName()+" wins the game!");
+        } else {
+            System.out.println(player2.getName()+" wins the game!");
+        }
     }
 
     /**
@@ -55,8 +54,8 @@ public class WarController {
             System.out.println(player1.display(0,inWar));
             System.out.println(player2.display(0,inWar));
         }
-        return (!inWar ? player1.getTopCard().Compare(player2.getTopCard()) 
-                        :player1.getCard(3).Compare(player2.getCard(2)) );
+        int printer = (!inWar ? 0 : player1.hand.size()-1);
+        return player1.getCard(printer).Compare(player2.getCard(printer));
     }
 
     /**
@@ -71,37 +70,56 @@ public class WarController {
             System.out.println("war");
             inWar = true;
         }
-        int i = 1;
-        while (canPlay && i < 4) {
-            canPlay = player1.drawCard();
-            player1.getCard(i).flip();
-            canPlay = player2.drawCard();
-            player2.getCard(i).flip();
-            if (i == 3) {
-                player1.getCard(i).flip();
-                player2.getCard(i).flip();
+        int strSize = player1.hand.size();
+        int i = 0;
+        canPlay = player1.drawCard() && player2.drawCard();
+        while (canPlay && i < 3) {
+            if (i != 2) {
+                player1.getCard(i + strSize ).flip();
+                player2.getCard(i + strSize ).flip();
             }
-            System.out.println(player1.display(i,inWar));
-            System.out.println(player2.display(i,inWar));
+            System.out.println(player1.display(i + strSize,inWar));
+            System.out.println(player2.display(i + strSize,inWar));
+
+            if (i != 2) {
+                canPlay = player1.drawCard() && player2.drawCard();
+            }
             i++;
         }
     }
 
+    /**
+     * p1Wins
+     * player1 puts all cards in hand into deck 
+     * player2 hands over all cards in hand
+     * @param n/a
+     * @return n/a
+     */
     public void p1Wins() {
-        System.out.println("Player 1 wins the round");
-        //We need to handle if player one wins
-        //in this case we take all the cards out of the hand of 
-        //player 2 and put them into the deck of player one at the end
-        //NOTE: need to check if each card is facedown before putting into
-        //the new deck. as well as reseting the face down cards for player one
+        System.out.println(player1.getName() + " wins the " +(inWar ? "War" : "round"));
         player1.putInDeck();
         player2.handOver(player1);
     }
 
+    /**
+     * p2Wins
+     * player2 puts all cards in hand into deck 
+     * player1 hands over all cards in hand
+     * @param n/a
+     * @return n/a
+     */
     public void p2Wins() {
-        System.out.println("Player 2 wins the round");
+        System.out.println(player2.getName() + " wins the " +(inWar ? "War" : "round") );
         //vice versa 
         player2.putInDeck();
         player1.handOver(player2);
+    }
+
+    public void resetController() {
+        player1 = new Hand("player 1");
+        player1.shuffle();
+        player2 = new Hand("player 2",player1.split());
+        canPlay = false;
+        inWar = false;
     }
 }

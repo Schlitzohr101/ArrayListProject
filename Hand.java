@@ -36,6 +36,15 @@ public class Hand extends Deck {
     }
 
     /**
+     * getName
+     * sends string back of the name of the player
+     * @return name of the player
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * drawCard
      * takes card given and puts into hand
      * @param deckCard

@@ -10,78 +10,103 @@ public class WarController {
     /**
      * Default Constructor
      * Builds both the decks and hands for each of the players
+     * default names are given to the players
      * Input: n/a
      * Output: deck1 and deck2 are shuffled and split, hands are ready
      */
     WarController() {
-        resetController();
+        resetController("player1","player2");
     }
 
+    /**
+     * Non - Default Constructor
+     * Builds both the decks and hands for each of the players with parameter names
+     * @param name1 name of the first player
+     * @param name2 name of the second player
+     * Output: deck1 and deck2 are shuffled and split, hands are ready
+     */
+    WarController(String name1, String name2) {
+        resetController(name1, name2);
+    }
 
+    /**
+     * startGame
+     * Starts the logic for the game
+     */
     public void startGame() {
-        System.out.println(
-            "Welcome to WAR!"
-        );
+        //each player draws a card form their deck
         canPlay = (player1.drawCard() && player2.drawCard());
 
+        //canPlay is linked to players ability to draw cards
+        //if a player can no longer draw cards then the game is over
         while (canPlay) {
+            // we compare the int values of each card and put the difference in val
             int val = compareHands(inWar);
             //System.out.println(val);
+            //switch for if cards are equal or not
+            //default case handles the not equal
             switch(val) {
                 case 0 : beginWar();
                 break;
+                //if not equal then which player won?
+                //greater than 0, player1 wins else its player two
+                //reset inWar to be false
                 default: if (val > 0) {p1Wins();} else {p2Wins();} inWar = false;
                 break;
             }
-            if (!inWar){
-                canPlay = (player1.drawCard() && player2.drawCard()) ;
-            }
+            //draw card for the next round
+            canPlay = (player1.drawCard() && player2.drawCard()) ;
         }
+        //check to see who still has cards
         if (player1.getSize() > 0) {
+            System.out.println(player2.getName() + " is out of Cards!");
             System.out.println(player1.getName()+" wins the game!");
         } else {
+            System.out.println(player1.getName() + " is out of Cards!");
             System.out.println(player2.getName()+" wins the game!");
         }
+
     }
 
     /**
      * compareHands
-     * compares the top card of each hand, with player 1 being the baseline
+     * compares the most recent card of each hand, with player 1 being the baseline
      * @return 0 if equal, >1 if greater than, <1 if less
      */
     public int compareHands(boolean inWar) {
-        if(!inWar) {
-            System.out.println(player1.display(0,inWar));
-            System.out.println(player2.display(0,inWar));
-        }
-        int printer = (!inWar ? 0 : player1.hand.size()-1);
+        //set printer to index of the card to be printer and compared
+        int printer = (!inWar ? 0 : player1.getHandSize()-1);
+        System.out.println(player1.display(printer,inWar));
+        System.out.println(player2.display(printer,inWar));
         return player1.getCard(printer).Compare(player2.getCard(printer));
     }
 
     /**
      * beginWar
-     * war mode logic, pulls 3 cards from each of the players decks
-     * and flip the first 2
+     * pull out 2 cards from each deck and flip to facedown
      * @param null
-     * @return Players hands with the cards flipped except the last one for each player 
+     * @return Players hands with the cards flipped 
      */
     public void beginWar() {
+        //if a sequencial war, then don't reprint that we are in war
         if (!inWar) {
             System.out.println("war");
             inWar = true;
         }
-        int strSize = player1.hand.size();
+        //array size is dynamic, so put current array size into strSize
+        int strSize = player1.getHandSize();
         int i = 0;
+        //draw cards for both players hand
         canPlay = player1.drawCard() && player2.drawCard();
-        while (canPlay && i < 3) {
-            if (i != 2) {
-                player1.getCard(i + strSize ).flip();
-                player2.getCard(i + strSize ).flip();
-            }
+        while (canPlay && i < 2) {
+            //flip both players cards
+            player1.getCard(i + strSize ).flip();
+            player2.getCard(i + strSize ).flip();
+            //print both players cards
             System.out.println(player1.display(i + strSize,inWar));
             System.out.println(player2.display(i + strSize,inWar));
-
-            if (i != 2) {
+            //draw more cards
+            if (i < 2) {
                 canPlay = player1.drawCard() && player2.drawCard();
             }
             i++;
@@ -97,8 +122,8 @@ public class WarController {
      */
     public void p1Wins() {
         System.out.println(player1.getName() + " wins the " +(inWar ? "War" : "round"));
-        player1.putInDeck();
-        player2.handOver(player1);
+        player1.putHandInDeck();
+        player2.handOverTo(player1);
     }
 
     /**
@@ -110,15 +135,20 @@ public class WarController {
      */
     public void p2Wins() {
         System.out.println(player2.getName() + " wins the " +(inWar ? "War" : "round") );
-        //vice versa 
-        player2.putInDeck();
-        player1.handOver(player2);
+        player2.putHandInDeck();
+        player1.handOverTo(player2);
     }
 
-    public void resetController() {
-        player1 = new Hand("player 1");
+    /**
+     * resetController
+     * resets all attributes of the controller to a new set
+     * @param n/a
+     * @return n/a
+     */
+    public void resetController(String name1, String name2) {
+        player1 = new Hand(name1);
         player1.shuffle();
-        player2 = new Hand("player 2",player1.split());
+        player2 = new Hand(name2,player1.split());
         canPlay = false;
         inWar = false;
     }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Hand extends Deck {
-    public ArrayList<Card> hand;
+    private ArrayList<Card> hand;
     private String name;
     /**
      * Default Constructor
@@ -45,6 +45,15 @@ public class Hand extends Deck {
     }
 
     /**
+     * getHandSize
+     * @return the size of hand
+     */
+    public int getHandSize() {
+        return hand.size();
+    }
+
+
+    /**
      * drawCard
      * takes card given and puts into hand
      * @param deckCard
@@ -61,33 +70,22 @@ public class Hand extends Deck {
     }
 
     /**
-     * addToHand
-     * adds the given card to the hand
-     * @param cardToAdd
-     * @return n/a
-     */
-    public void addToHand(Card cardToAdd) {
-        hand.add(cardToAdd);
-    }
-
-    /**
-     * getTopCard
+     * getCard
      * see the top Card in the hand
-     * Input: n/a
-     * Output: @return Card on top
+     * @param num index of card to be returned
+     * @return Card at index
      */
-    public Card getTopCard() {
-        return hand.get(0);
-    }
-
     public Card getCard(int num) {
         return hand.get(num);
     }
 
     /**
-     * 
+     * putHandIneck
+     * hand is added to deck, with each card that is flipped being flipped to faceup
+     * @param n/a
+     * @return n/a
      */
-    public void putInDeck() {
+    public void putHandInDeck() {
         while(hand.size() > 0 ) {
             Card toAdd = hand.remove(0);
             if (!toAdd.isFaceup()) {
@@ -102,7 +100,7 @@ public class Hand extends Deck {
      * @param otherHand
      * @return the otherHand will contain all this hands cards
      */
-    public void handOver(Hand otherHand) {
+    public void handOverTo(Hand otherHand) {
 
         for (Card card : hand) {
             if (!card.isFaceup()) {
@@ -114,7 +112,7 @@ public class Hand extends Deck {
         while(hand.size() > 0) {
             hand.remove(0);
         }
-        otherHand.putInDeck();
+        otherHand.putHandInDeck();
         otherHand.shuffle();
         shuffle();
     }
@@ -128,7 +126,7 @@ public class Hand extends Deck {
     public String display(int num, boolean inWar) {
         StringBuilder builder = new StringBuilder();
         //depending on if in war, format changes
-        builder.append((inWar ? "war card for " + name + " " : name + " plays "));
+        builder.append((inWar ? "war card for " + name + " " : name + "\'s "));
         //if card is facedown, dispaly only xx else display the top card in the hand
         builder.append( (getCard(num).isFaceup() ? getCard(num).toString() : "Card is xx") );
         return builder.toString();

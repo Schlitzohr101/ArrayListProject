@@ -1,3 +1,7 @@
+/*  William Murray, Adrian Seth
+    September 9th, 2019
+    Purpose: Program is designed play the card game war till a player wins
+*/
 import java.util.*;
 
 public class Deck {

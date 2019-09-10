@@ -1,3 +1,7 @@
+/*  William Murray, Adrian Seth
+    September 9th, 2019
+    Purpose: Program is designed play the card game war till a player wins
+*/
 import java.util.ArrayList;
 public class Hand extends Deck {
     private ArrayList<Card> hand;
@@ -38,6 +42,7 @@ public class Hand extends Deck {
     /**
      * getName
      * sends string back of the name of the player
+     * @param none
      * @return name of the player
      */
     public String getName() {
@@ -46,6 +51,7 @@ public class Hand extends Deck {
 
     /**
      * getHandSize
+     * @param none
      * @return the size of hand
      */
     public int getHandSize() {
@@ -94,6 +100,7 @@ public class Hand extends Deck {
             addCard(toAdd);
         }
     }
+
     /**
      * handOver
      * gives all the cards in the calling objects hand

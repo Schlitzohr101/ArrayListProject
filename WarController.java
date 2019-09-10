@@ -1,9 +1,10 @@
-
+/*  William Murray, Adrian Seth
+    September 9th, 2019
+    Purpose: Program is designed play the card game war till a player wins
+*/
 public class WarController {
     private Hand player1;
     private Hand player2;
-    // private Deck deck1;
-    // private Deck deck2;
     private boolean canPlay;
     private boolean inWar;
 

@@ -33,6 +33,8 @@ public class WarController {
     /**
      * startGame
      * Starts the logic for the game
+     * Input: n/a
+     * Output: n/a
      */
     public void startGame() {
         //each player draws a card form their deck
@@ -43,7 +45,6 @@ public class WarController {
         while (canPlay) {
             // we compare the int values of each card and put the difference in val
             int val = compareHands(inWar);
-            //System.out.println(val);
             //switch for if cards are equal or not
             //default case handles the not equal
             switch(val) {
@@ -72,6 +73,7 @@ public class WarController {
     /**
      * compareHands
      * compares the most recent card of each hand, with player 1 being the baseline
+     * @param inWar boolean to determine print and compare index
      * @return 0 if equal, >1 if greater than, <1 if less
      */
     public int compareHands(boolean inWar) {
@@ -85,8 +87,8 @@ public class WarController {
     /**
      * beginWar
      * pull out 2 cards from each deck and flip to facedown
-     * @param null
-     * @return Players hands with the cards flipped 
+     * Input: n/a
+     * Output: Players hands with the cards flipped 
      */
     public void beginWar() {
         //if a sequencial war, then don't reprint that we are in war
@@ -118,8 +120,8 @@ public class WarController {
      * p1Wins
      * player1 puts all cards in hand into deck 
      * player2 hands over all cards in hand
-     * @param n/a
-     * @return n/a
+     * Input: n/a
+     * Output: n/a
      */
     public void p1Wins() {
         System.out.println(player1.getName() + " wins the " +(inWar ? "War" : "round"));
@@ -131,8 +133,8 @@ public class WarController {
      * p2Wins
      * player2 puts all cards in hand into deck 
      * player1 hands over all cards in hand
-     * @param n/a
-     * @return n/a
+     * Input: n/a
+     * Output: n/a
      */
     public void p2Wins() {
         System.out.println(player2.getName() + " wins the " +(inWar ? "War" : "round") );
@@ -143,8 +145,8 @@ public class WarController {
     /**
      * resetController
      * resets all attributes of the controller to a new set
-     * @param n/a
-     * @return n/a
+     * Input: n/a
+     * Output: n/a
      */
     public void resetController(String name1, String name2) {
         player1 = new Hand(name1);
@@ -152,5 +154,20 @@ public class WarController {
         player2 = new Hand(name2,player1.split());
         canPlay = false;
         inWar = false;
+    }
+
+    /**
+     * toString
+     * prints the current state of the war controller
+     * Input: n/a
+     * @return string of WarController state
+     */
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("WarController state:\n");
+        builder.append("Are both players able to play: " + canPlay);
+        builder.append("Are players in war: "+ inWar);
+        return builder.toString();
     }
 }

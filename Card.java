@@ -9,7 +9,10 @@ public class Card {
     private boolean faceup;
 
     /*
-     * Default Constructor Creates a blank card Inputs: n/a Outputs: rank will be 0
+     * Default Constructor 
+     * Creates a blank card 
+     * Inputs: n/a 
+     * Outputs: rank will be 0
      * and suit will be null
      */
     Card() {
@@ -19,9 +22,12 @@ public class Card {
     }
 
     /*
-     * Non - Default Constructor Creates a card based on the parameters Inputs: Req
-     * -> ranker - int value of the rank of the card -> suit - String of the card's
-     * suit Outputs: card is instantiated with the parameters values
+     * Non - Default Constructor 
+     * Creates a card based on the parameters 
+     * Inputs: Req
+     * -> ranker - int value of the rank of the card 
+     * -> suit - String of the card's suit 
+     * Outputs: card is instantiated with the parameters values
      */
     Card(int ranker, String suiter) {
         rank = ranker;
@@ -30,7 +36,9 @@ public class Card {
     }
 
     /**
-     * setRank Inputs: @param rank the rank to set Output: rank is set for the card
+     * setRank 
+     * Inputs: @param rank the rank to set 
+     * Output: rank is set for the card
      * object
      */
     public void setRank(int rank) {
@@ -38,14 +46,18 @@ public class Card {
     }
 
     /**
-     * getRank Inputs: n/a Outputs: the rank of the player as a int
+     * getRank 
+     * Inputs: n/a 
+     * Outputs: the rank of the player as a int
      */
     public int getRank() {
         return rank;
     }
 
     /**
-     * setSuit Inputs: @param suit the suit to set Output: sets the suit of the card
+     * setSuit 
+     * Inputs: @param suit the suit to set 
+     * Output: sets the suit of the card
      * object
      */
     public void setSuit(String suit) {
@@ -53,7 +65,9 @@ public class Card {
     }
 
     /**
-     * getSuit Inputs: n/a Outputs: suit of the card as an enum
+     * getSuit 
+     * Inputs: n/a 
+     * Outputs: suit of the card as an enum
      */
     public EnumConverter.suits getSuit() {
         return suit;
@@ -81,16 +95,19 @@ public class Card {
 
     /**
      * Compare compares the rank of the param card to the one that calls
-     * Input: @param diffCard Output: -1 for if callCard is lower, 0 if equal, and 1
+     * @param diffCard  
+     * @return -1 for if callCard is lower, 0 if equal, and 1
      * for if higher
      */
     public int Compare(Card diffCard) {
         return (rank - diffCard.getRank());
     }
 
-    /*
-     * toString Converts card object to string Inputs: n/a Outputs: String of card
-     * in format "Card is ____ of _____"
+    /**
+     * toString 
+     * Converts card object to string 
+     * Inputs: n/a 
+     * @return String of card in format "Card is ____ of _____"
      */
     @Override
     public String toString() {

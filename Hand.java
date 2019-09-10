@@ -20,7 +20,9 @@ public class Hand extends Deck {
     
     /**
      * Non-defualt Constructor
-     * @param newName
+     * builds new instance of hand with the passed in name
+     * @param newName name of player
+     * Output: n/a
      */
     Hand(String newName) {
         hand = new ArrayList<Card>();
@@ -29,8 +31,8 @@ public class Hand extends Deck {
 
     /**
      * Non-default Constructor
-     * @param newName, @param newDeck
-     * @return
+     * @param newName name of player @param newDeck deck to be intialized
+     * Output: n/a
      */
     Hand(String newName, ArrayList<Card> newDeck) {
         super(newDeck);
@@ -42,7 +44,7 @@ public class Hand extends Deck {
     /**
      * getName
      * sends string back of the name of the player
-     * @param none
+     * Input: n/a
      * @return name of the player
      */
     public String getName() {
@@ -51,7 +53,7 @@ public class Hand extends Deck {
 
     /**
      * getHandSize
-     * @param none
+     * Input: none
      * @return the size of hand
      */
     public int getHandSize() {
@@ -61,8 +63,8 @@ public class Hand extends Deck {
 
     /**
      * drawCard
-     * takes card given and puts into hand
-     * @param deckCard
+     * takes card from deck and puts into hand
+     * Input: n/a
      * @return boolean of it the operation was a success
      */
     public boolean drawCard() {
@@ -88,8 +90,8 @@ public class Hand extends Deck {
     /**
      * putHandIneck
      * hand is added to deck, with each card that is flipped being flipped to faceup
-     * @param n/a
-     * @return n/a
+     * Input: n/a
+     * Output: n/a
      */
     public void putHandInDeck() {
         while(hand.size() > 0 ) {
@@ -120,14 +122,14 @@ public class Hand extends Deck {
             hand.remove(0);
         }
         otherHand.putHandInDeck();
-        otherHand.shuffle();
-        shuffle();
+        // otherHand.shuffle();
+        // shuffle();
     }
 
     /**
      * display
-     * Handles the displaying of the cards in the hand
-     * @param null
+     * Handles the displaying of specific cards in the hand
+     * @param num index of card in hand @param inWar boolean to display war format
      * @return string of the Card to be displayed in either war or regular form
      */
     public String display(int num, boolean inWar) {

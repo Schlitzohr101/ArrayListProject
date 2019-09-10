@@ -28,7 +28,6 @@ public class ArrayListProject {
      * withNames
      * method to start game with players names included
      * @param in Scanner to read in names and reply
-     * @return n/a
      */
     public static void withNames(Scanner in) {
         System.out.print("\n\nPlayer 1: ");
@@ -57,7 +56,6 @@ public class ArrayListProject {
      * withoutNames
      * method to start game with default player names
      * @param in Scanner to read in reply
-     * @return n/a
      */
     public static void withoutNames(Scanner in) {
         WarController War = new WarController();

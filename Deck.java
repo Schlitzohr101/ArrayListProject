@@ -35,27 +35,28 @@ public class Deck {
     /**
      * getSize
      * returns int of the deck size
+     * Input: n/a
      * @return the size of the deck
      */
     public int getSize() {
         return cards.size();
     }
 
-    /*
+    /**
      *  addCard
-     *  adds a new Card to the deck
-     *  Inputs: @param newCard
-     *  Outputs: Deck contains the Card @param newCard
+     *  adds a new Card to the back of the deck
+     *  @param newCard
+     *  Output: newCard is in back of the deck
      */
-    public boolean addCard(Card newCard) {
-        return cards.add(newCard);
+    public void addCard(Card newCard) {
+        cards.add(cards.size() ,newCard);
     }
 
     /**
      * removeCard
      * takes the top card from the hand
      * Inputs: n/a
-     * Outputs: @return the card that was removed
+     * @return the card that was removed;
      *          will return null if there are no cards in the hand
      */
     public Card removeCard() {
@@ -65,7 +66,7 @@ public class Deck {
     /**
      * showTopCard
      * gives a reference to the card on the top of the deck
-     * @param n/a
+     * Inputs: n/a
      * @return Card on top
      */
     public Card showTopCard() {
@@ -74,9 +75,9 @@ public class Deck {
 
     /**
      * shuffle
-     * shuffles deck based on predetermined randomness
-     * @param n/a
-     * @return shuffled deck
+     * shuffles deck based on predetermined randomness of the Collections tool
+     * Inputs: n/a
+     * Outputs: n/a
      */
     public void shuffle() {
         Collections.shuffle(cards);
@@ -95,23 +96,24 @@ public class Deck {
         return returner;
     }
 
-    /*
+    /**
      * toString 
-     * Converts the deck object into a string 
-     * Inputs: n/a 
-     * Outputs: displays all cards in rows of 10
+     * Converts the deck object into a string formated to
+     * 5 cards in a row
+     * Inputs: n/a
+     * @return string of all Cards in Deck
      */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        int tenMax = 0;
+        int fiveMax = 0;
         builder.append("Deck:\n");
         for (Card card : cards) {
             builder.append(card.toString()+", ");
-            tenMax++;
-            if (tenMax > 5) {
+            fiveMax++;
+            if (fiveMax > 5) {
                 builder.append("\n");
-                tenMax = 0;
+                fiveMax = 0;
             }
         }
         return builder.toString();
